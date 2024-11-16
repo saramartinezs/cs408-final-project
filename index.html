@@ -3,15 +3,46 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Hello World!</title>
+  <title>My To Do App</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <h1>HTML Rocks!</h1>
-  <img src="img/compile.jpeg">
+  <h1>To Do App</h1>
+  <nav>
+    <ul>
+      <li><span>Home</span></li>
+      <li><a href="school.html">School</a></li>
+      <li><a href="chores.html">Chores</a></li>
+      <li><a href="goals.html">Goals</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <form>
+    <label for="task-title">Task Title</label>
+    <input type="text" id="task-title"><br><br>
+
+    <label for="task-details">Task Details</label>
+    <textarea id="task-details"></textarea><br><br>
+
+    <label for="priority">Priority</label>
+    <select for="priority">
+      <option>Low</option>
+      <option>Medium</option>
+      <option>High</option>
+    </select><br><br>
+
+    <button>Add To List</button>
+  </form>
+ 
+  <div id="high-priority-tasks">
+    <!-- Add high priority tasks here -->
+  </div>
+
+
   <script type="module" src="js/main.js"></script>
 </body>
 
