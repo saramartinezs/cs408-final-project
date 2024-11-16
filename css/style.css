@@ -1,4 +1,81 @@
+/****** General body ******/
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5fc;
+  color: #2c2a2a;
+}
+
 h1{
-  border-color: #d3e644;
-  border-style: dashed;
+  text-align: center;
+}
+
+/****** Nav bar ******/
+nav {
+  background-color: #CE0DB4;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+nav ul li a, nav ul li span {
+  color: white;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.194);
+}
+
+/****** Form ******/
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.137);
+}
+
+/****** Input and textarea ******/
+form input, form textarea, form select, form button {
+  width: 95%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #929292;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+form textarea {
+  min-height: 100px;
+}
+
+/****** Button styling ******/
+form button {
+  background-color: #6f2cff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #4b00b3;
+}
+
+/****** Label styling ******/
+form label {
+  font-weight: bold;
+  display: block;
 }
