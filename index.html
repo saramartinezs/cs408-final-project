@@ -22,32 +22,36 @@
   </nav>
 
   <form>
-    <label for="task-title">Task Title</label>
-    <input type="text" id="task-title"><br><br>
+    <label for="taskTitle">Task Title</label>
+    <input type="text" id="taskTitle"><br><br>
 
-    <label for="task-details">Task Details</label>
-    <textarea id="task-details"></textarea><br><br>
+    <label for="taskDetails">Task Details</label>
+    <textarea id="taskDetails"></textarea><br><br>
 
     <label for="priority">Priority</label>
-    <select for="priority">
+    <select id="priority">
       <option>Low</option>
       <option>Medium</option>
       <option>High</option>
     </select><br><br>
 
     <label for="category">Category</label>
-    <select for="category">
+    <select id="category">
       <option>School</option>
       <option>Chores</option>
       <option>Goals</option>
     </select>
 
-    <button>Add To List</button>
+    <button type="button" id="send-data" onclick="sendData()">Add To List</button>
   </form>
  
-  <div id="high-priority-tasks">
-    <!-- Add high priority tasks here -->
+  <div id="tasks-div">
+    <!-- Add all tasks here -->
+    <table id="all-tasks">
+    
+    </table>
   </div>
+  <button id="load-data-button" onclick="loadData()">Load Data</button>
 
 
   <script type="module" src="js/main.js"></script>
