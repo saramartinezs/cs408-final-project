@@ -2,7 +2,7 @@ window.onload = loadData;
 window.sendData = sendData;
 window.loadData = loadData;
 
-var count = 0; 
+var count = 1; 
 
 /**
  * Loads items from the database 
@@ -11,10 +11,12 @@ function loadData(){
     let lambda = document.getElementById("all-tasks");
     let xhr = new XMLHttpRequest();
     xhr.addEventListener("load", function () {
-        lambda.innerHTML = "<tr><th>ID</th><th>Task Title</th><th>Task Details</th><th>Priority</th><th>Category</th><th>Action</th></tr>";
+        lambda.innerHTML = "<tr><th>Task Title</th><th>Task Details</th><th>Priority</th><th>Category</th><th>Action</th></tr>";
 
         const items = JSON.parse(xhr.response);
-
+        const priorityOrder = { "High": 3, "Medium": 2, "Low": 1 };
+        items.sort((a, b) => priorityOrder[b.priority] - priorityOrder[a.priority]);
+        
         items.forEach(item => {
             var row = lambda.insertRow();
             var id = row.insertCell(0);
@@ -30,7 +32,7 @@ function loadData(){
             category.innerText = item.category;
 
             let button = document.createElement('button');
-            button.innerText = "Delete";
+            button.innerText = "Done";
             button.onclick = function() {deleteData(item.id)};
             action.appendChild(button);
         });
@@ -44,7 +46,7 @@ function loadData(){
  * Deletes an item from the database
  * @param {*} id The id of the item that will be deleted from the database
  */
-function deleteData(id){
+export function deleteData(id){
     let xhr = new XMLHttpRequest();
     let url = "https://lgffi88j6b.execute-api.us-east-2.amazonaws.com/items/"
     let toDelete = url.concat(id);
@@ -52,7 +54,7 @@ function deleteData(id){
     xhr.open("DELETE", toDelete);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.addEventListener("load", function() {
-        document.getElementById("load-data-button").click();  // reloads items
+        loadData();  // reloads items
     });
     xhr.send();
 }
@@ -65,10 +67,16 @@ function sendData(){
     xhr.open("PUT", " https://lgffi88j6b.execute-api.us-east-2.amazonaws.com/items");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.addEventListener("load", function() {
-        document.getElementById("load-data-button").click();  // reloads items
+        loadData();  // reloads items
     });
+    var title = document.getElementById("taskTitle").value.trim();
 
-    count += 1;
+    // Check if the Task Title is empty
+    if (!title) {
+        alert("Task Title is required."); 
+        return; 
+    }
+
     var taskTitle = document.getElementById("taskTitle");
     var taskDetails = document.getElementById("taskDetails");
     var priority = document.getElementById("priority");
@@ -89,7 +97,7 @@ function sendData(){
     while (existingIds.includes(newId)) {
         newId++;
     }
-
+    count = newId + 1;
     xhr.send(JSON.stringify({
         "id": newId.toString(),
         "taskTitle": taskTitle.value,
