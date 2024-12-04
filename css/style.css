@@ -7,8 +7,15 @@ body {
   color: #2c2a2a;
 }
 
-h1{
+h1, h2{
   text-align: center;
+}
+
+p{
+  max-width: 500px;
+  text-align: center;
+  margin: 0 auto;
+  text-align: justify;
 }
 
 /****** Nav bar ******/
@@ -80,7 +87,7 @@ form label {
   display: block;
 }
 
-/****** Tabel Styling ******/
+/****** Table Styling ******/
 table {
   margin: auto;
   margin-top: 50px;
@@ -111,4 +118,5 @@ tr:nth-child(even) {
   background-color: rgb(233, 224, 232);
 }
 
+/****** Hides the ID column ******/
 td:first-child { display: none; }
