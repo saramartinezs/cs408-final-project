@@ -15,7 +15,7 @@ function loadData(){
     }
     let xhr = new XMLHttpRequest();
     xhr.addEventListener("load", function () {
-        lambda.innerHTML = "<tr><th>Task Title</th><th>Task Details</th><th>Priority</th><th>Category</th><th>Action</th></tr>";
+        lambda.innerHTML = "<tr><th scope=\"col\">Task Title</th><th scope=\"col\">Task Details</th><th scope=\"col\">Priority</th><th scope=\"col\">Category</th><th scope=\"col\">Action</th></tr>";
 
         var items = JSON.parse(xhr.response);
         items = sortTasksByPriority(items);
