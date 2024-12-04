@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>My To Do App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <h1>To Do App</h1>
+  <nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><span>Quick Add</span></li>
+        <li><a href="school.html">School</a></li>
+        <li><a href="chores.html">Chores</a></li>
+        <li><a href="goals.html">Goals</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <form>
+    <label for="taskTitle">Task Title</label>
+    <input type="text" id="taskTitle" required/><br><br>
+
+    <p id="taskDetails"></p>
+    <p id="priority"></p>
+    <p id ="category"></p>
+
+    <button type="button" id="send-data" onclick="sendData()">Add To List</button>
+  </form>
+ 
+  <div id="tasks-div">
+    <!-- Add all tasks here -->
+    <table id="quick-tasks">
+    
+    </table>
+  </div>
+  <!-- <button id="load-data-button" onclick="loadData()">Load Data</button> -->
+
+
+  <script type="module" src="js/quickadd.js"></script>
+</body>
+
+</html>
