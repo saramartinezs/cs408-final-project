@@ -9,14 +9,16 @@ var count = 1;
  */
 function loadData(){
     let lambda = document.getElementById("all-tasks");
+    if (!lambda) {
+        console.error("Element with ID 'all-tasks' not found.");
+        return; // Exit the function if the element doesn't exist
+    }
     let xhr = new XMLHttpRequest();
     xhr.addEventListener("load", function () {
         lambda.innerHTML = "<tr><th>Task Title</th><th>Task Details</th><th>Priority</th><th>Category</th><th>Action</th></tr>";
 
-        const items = JSON.parse(xhr.response);
-        const priorityOrder = { "High": 3, "Medium": 2, "Low": 1 };
-        items.sort((a, b) => priorityOrder[b.priority] - priorityOrder[a.priority]);
-        
+        var items = JSON.parse(xhr.response);
+        items = sortTasksByPriority(items);
         items.forEach(item => {
             var row = lambda.insertRow();
             var id = row.insertCell(0);
@@ -92,14 +94,9 @@ function sendData(){
         }
     });
 
-    // Generate a unique ID - just in case page is reloaded
-    let newId = count;
-    while (existingIds.includes(newId)) {
-        newId++;
-    }
-    count = newId + 1;
+    count = generateUniqueId(existingIds, count);
     xhr.send(JSON.stringify({
-        "id": newId.toString(),
+        "id": count.toString(),
         "taskTitle": taskTitle.value,
         "taskDetails": taskDetails.value,
         "priority": priority.value,
@@ -109,4 +106,20 @@ function sendData(){
     taskTitle.value = "";
     taskDetails.value = "";
 
+}
+
+export function sortTasksByPriority(items) {
+    const priorityOrder = { "High": 3, "Medium": 2, "Low": 1 };
+    return items.sort((a, b) => priorityOrder[b.priority] - priorityOrder[a.priority]);
+}
+
+export function generateUniqueId(existingIds, count) {
+    let newId = count;
+    console.log("newId before: " + newId);
+
+    while (existingIds.includes(newId)) {
+        newId++;
+    }
+    console.log("newId: " + newId);
+    return newId;
 }
